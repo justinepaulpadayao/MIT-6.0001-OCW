@@ -60,8 +60,15 @@ def is_word_guessed(secret_word, letters_guessed):
     returns: boolean, True if all the letters of secret_word are in letters_guessed;
       False otherwise
     '''
+    for i in secret_word:                                                               # iterates all the characters in secret_word
+      if i not in letters_guessed:                                                      # checks if there is a character in secret_word that was not guessed
+        return False                                                                    # returns False if there is a single character not guessed
+    return True                                                                         # else returns True if a character is present
+  
+print(is_word_guessed(secret_word='apple',letters_guessed=['a','p','l','l','e']))
+     
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    
 
 
 
@@ -72,8 +79,17 @@ def get_guessed_word(secret_word, letters_guessed):
     returns: string, comprised of letters, underscores (_), and spaces that represents
       which letters in secret_word have been guessed so far.
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    myWord = ''
+    
+    for i in secret_word:                                                                # iterates all the characters in secret_word
+      if i in letters_guessed:                                                           # checks if there is a character in secret_word that was guessed
+        myWord += i                                                                      # if True, add character to empty string myWord
+      else:                                                     
+        myWord += '_'                                                                    # if False, add underscore ('_') to empty string myWord
+    return(myWord)                                                                       # prints out myWord with only the correct guesses
+print(get_guessed_word(secret_word='apple',letters_guessed=['a','g','l','l','e']))      
+
+    
 
 
 
@@ -83,8 +99,18 @@ def get_available_letters(letters_guessed):
     returns: string (of letters), comprised of letters that represents which letters have not
       yet been guessed.
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    available_letters = ''
+    lowercase_letters = string.ascii_lowercase
+    for i in lowercase_letters:
+        if i in letters_guessed:
+            available_letters += ''
+        else:
+            available_letters += i     
+    return(available_letters)
+
+get_available_letters(letters_guessed = ['e', 'i', 'k', 'p', 'r', 's'])
+            
+
     
     
 
@@ -209,5 +235,5 @@ if __name__ == "__main__":
     # To test part 3 re-comment out the above lines and 
     # uncomment the following two lines. 
     
-    #secret_word = choose_word(wordlist)
+    # secret_word = choose_word(wordlist)
     #hangman_with_hints(secret_word)
