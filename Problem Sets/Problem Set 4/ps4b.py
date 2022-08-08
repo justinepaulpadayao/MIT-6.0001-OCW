@@ -50,9 +50,8 @@ def get_story_string():
     """
     Returns: a story in encrypted text.
     """
-    f = open("story.txt", "r")
-    story = str(f.read())
-    f.close()
+    with open("story.txt", "r") as f:
+        story = str(f.read())
     return story
 
 ### END HELPER CODE ###
@@ -205,20 +204,4 @@ class CiphertextMessage(Message):
         '''
         pass #delete this line and replace with your code here
 
-if __name__ == '__main__':
-
-#    #Example test case (PlaintextMessage)
-#    plaintext = PlaintextMessage('hello', 2)
-#    print('Expected Output: jgnnq')
-#    print('Actual Output:', plaintext.get_message_text_encrypted())
-#
-#    #Example test case (CiphertextMessage)
-#    ciphertext = CiphertextMessage('jgnnq')
-#    print('Expected Output:', (24, 'hello'))
-#    print('Actual Output:', ciphertext.decrypt_message())
-
-    #TODO: WRITE YOUR TEST CASES HERE
-
-    #TODO: best shift value and unencrypted story 
-    
-    pass #delete this line and replace with your code here
+pass

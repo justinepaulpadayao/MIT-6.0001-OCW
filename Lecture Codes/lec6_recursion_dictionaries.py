@@ -10,7 +10,7 @@ Created on Wed Sep 21 11:52:34 2016
 #####################################
 
 def printMove(fr, to):
-    print('move from ' + str(fr) + ' to ' + str(to))
+    print(f'move from {str(fr)} to {str(to)}')
 
 def Towers(n, fr, to, spare):
     if n == 1:
@@ -29,10 +29,7 @@ def Towers(n, fr, to, spare):
 def fib(x):
     """assumes x an int >= 0
        returns Fibonacci of x"""
-    if x == 0 or x == 1:
-        return 1
-    else:
-        return fib(x-1) + fib(x-2)
+    return 1 if x in [0, 1] else fib(x-1) + fib(x-2)
         
 #####################################
 # EXAMPLE:  testing for palindromes
@@ -49,10 +46,7 @@ def isPalindrome(s):
         return ans
 
     def isPal(s):
-        if len(s) <= 1:
-            return True
-        else:
-            return s[0] == s[-1] and isPal(s[1:-1])
+        return True if len(s) <= 1 else s[0] == s[-1] and isPal(s[1:-1])
 
     return isPal(toChars(s))
 
@@ -134,10 +128,7 @@ beatles = lyrics_to_frequencies(she_loves_you)
 def most_common_words(freqs):
     values = freqs.values()
     best = max(freqs.values())
-    words = []
-    for k in freqs:
-        if freqs[k] == best:
-            words.append(k)
+    words = [k for k in freqs if freqs[k] == best]
     return (words, best)
     
 def words_often(freqs, minTimes):
@@ -172,10 +163,9 @@ def fib(n):
 def fib_efficient(n, d):
     if n in d:
         return d[n]
-    else:
-        ans = fib_efficient(n-1, d)+fib_efficient(n-2, d)
-        d[n] = ans
-        return ans
+    ans = fib_efficient(n-1, d)+fib_efficient(n-2, d)
+    d[n] = ans
+    return ans
         
 d = {1:1, 2:2}
 

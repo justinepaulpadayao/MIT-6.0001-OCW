@@ -8,7 +8,7 @@ Created on Wed Oct 19 09:21:39 2016
 def bubble_sort(L):
     swap = False
     while not swap:
-        print('bubble sort: ' + str(L))
+        print(f'bubble sort: {str(L)}')
         swap = True
         for j in range(1, len(L)):
             if L[j-1] > L[j]:
@@ -27,14 +27,14 @@ print(testList)
 def selection_sort(L):
     suffixSt = 0
     while suffixSt != len(L):
-        print('selection sort: ' + str(L))
+        print(f'selection sort: {str(L)}')
         for i in range(suffixSt, len(L)):
             if L[i] < L[suffixSt]:
                 L[suffixSt], L[i] = L[i], L[suffixSt]
         suffixSt += 1
  
 testList = [1,3,5,7,2,6,25,18,13]
-       
+
 print('')
 print(selection_sort(testList))
 print(testList)
@@ -56,18 +56,17 @@ def merge(left, right):
     while (j < len(right)):
         result.append(right[j])
         j += 1
-    print('merge: ' + str(left) + '&' + str(right) + ' to ' +str(result))
+    print(f'merge: {str(left)}&{str(right)} to {result}')
     return result
 
 def merge_sort(L):
-    print('merge sort: ' + str(L))
+    print(f'merge sort: {str(L)}')
     if len(L) < 2:
         return L[:]
-    else:
-        middle = len(L)//2
-        left = merge_sort(L[:middle])
-        right = merge_sort(L[middle:])
-        return merge(left, right)
+    middle = len(L)//2
+    left = merge_sort(L[:middle])
+    right = merge_sort(L[middle:])
+    return merge(left, right)
         
 testList = [1,3,5,7,2,6,25,18,13]
 

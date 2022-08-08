@@ -100,11 +100,15 @@ class _TkAttr(object):
         # Check if we're in the creation thread.
         if threading.currentThread() == self._tk._creationThread:
             # We're in the creation thread; just call the event directly.
-            if self._tk._debug >= 8 or \
-               self._tk._debug >= 3 and self._attr.__name__ == 'call' and \
-               len(args) >= 1 and args[0] == 'after':
+            if (
+                self._tk._debug >= 8
+                or self._tk._debug >= 3
+                and self._attr.__name__ == 'call'
+                and args
+                and args[0] == 'after'
+            ):
                 print( 'Calling event directly:', \
-                    self._attr.__name__, args, kwargs)
+                        self._attr.__name__, args, kwargs)
             return self._attr(*args, **kwargs)
         else:
             # We're in a different thread than the creation thread; enqueue
@@ -115,13 +119,10 @@ class _TkAttr(object):
             self._tk._eventQueue.put((self._attr, args, kwargs, responseQueue))
             isException, response = responseQueue.get()
 
-            # Handle the response, whether it's a normal return value or
-            # an exception.
-            if isException:
-                exType, exValue, exTb = response
-                raise exType#, exValue, exTb
-            else:
+            if not isException:
                 return response
+            exType, exValue, exTb = response
+            raise exType#, exValue, exTb
 
 # Define a hook for class Tk's __init__ method.
 def _Tk__init__(self, *args, **kwargs):
@@ -190,7 +191,7 @@ def _CheckEvents(tk):
 
 # Test thread entry point.
 def _testThread(root):
-    text = "This is Tcl/Tk version %s" % TclVersion
+    text = f"This is Tcl/Tk version {TclVersion}"
     if TclVersion >= 8.1:
         try:
             text = text + unicode("\nThis should be a cedilla: \347",
@@ -207,9 +208,14 @@ def _testThread(root):
     text = text + "\nmtTkinter works with or without Tcl thread support"
     label = Label(root, text=text)
     label.pack()
-    button = Button(root, text="Click me!",
-              command=lambda root=root: root.button.configure(
-                  text="[%s]" % root.button['text']))
+    button = Button(
+        root,
+        text="Click me!",
+        command=lambda root=root: root.button.configure(
+            text=f"[{root.button['text']}]"
+        ),
+    )
+
     button.pack()
     root.button = button
     quit = Button(root, text="QUIT", command=root.destroy)

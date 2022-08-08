@@ -25,7 +25,7 @@ def translate_html(html_fragment):
     txt = ""                 # translated string
     parser_reg=""            # parser register
     parser_state = "TEXT"    # parser state: TEXT, ESCAPE or TAG
-    
+
     for x in html_fragment:  # process each character in html fragment
         parser_reg += x     
         if parser_state == "TEXT":   # in TEXT mode.
@@ -51,23 +51,23 @@ def translate_html(html_fragment):
                     txt += "\n\n"
 
                 parser_reg = ""      # tag handled, erase register
-                
+
         elif parser_state == "ESCAPE": # inside an ESCAPE code
             if x == ';':               # does this char end an escape code?
                 parser_state = "TEXT"  # return to TEXT mode for next character
 
                 esc = parser_reg[1:-1] # complete escape code is in register 
-                
+
                 if esc in HTML_ESCAPE_DECODE_TABLE:  # try to decode escape code
                     txt += HTML_ESCAPE_DECODE_TABLE[esc]
                 else:
                     txt += " "         # unknown escape code -> space
-                    
+
                 parser_reg = ""      # code handled, erase register
 
     if type(txt) is str:
         txt = unicode_to_ascii(txt)
-        
+
     return txt
 
 def unicode_to_ascii(s):
