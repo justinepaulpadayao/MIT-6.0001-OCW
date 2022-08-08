@@ -400,10 +400,7 @@ data = [(4.9,'2011/03/12 23:57:34'),
 (4.6,'2011/03/09 01:47:47'),
 (4.7,'2011/03/09 01:30:27')]
 
-ydata = []
-
-for t in data:
-	ydata.append(t[0])
+ydata = [t[0] for t in data]
 
 pylab.plot(ydata)
 pylab.title('Earthquake Magnitude in Japan from 3/9-3/12')

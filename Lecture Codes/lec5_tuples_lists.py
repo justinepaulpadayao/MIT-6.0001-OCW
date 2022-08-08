@@ -56,16 +56,10 @@ print("From", min_year, "to", max_year, \
 ## EXAMPLE: sum of elements in a list
 #########################
 def sum_elem_method1(L):
-  total = 0 
-  for i in range(len(L)): 
-      total += L[i] 
-  return total
+    return sum(L[i] for i in range(len(L)))
   
 def sum_elem_method2(L):
-    total = 0 
-    for i in L: 
-        total += i 
-    return total
+    return sum(L)
   
 print(sum_elem_method1([1,2,3,4]))
 print(sum_elem_method2([1,2,3,4]))
@@ -104,7 +98,7 @@ L.reverse()
 #########################
 a = 1
 b = a
-print(a)
+print(b)
 print(b)
 
 warm = ['red', 'yellow', 'orange']
@@ -140,8 +134,7 @@ print(sortedcool)
 #########################
 warm = ['yellow', 'orange']
 hot = ['red']
-brightcolors = [warm]
-brightcolors.append(hot)
+brightcolors = [warm, hot]
 print(brightcolors)
 hot.append('pink')
 print(hot)

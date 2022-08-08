@@ -16,7 +16,7 @@ class Animal(object):
     def set_name(self, newname=""):
         self.name = newname
     def __str__(self):
-        return "animal:"+str(self.name)+":"+str(self.age)
+        return f"animal:{str(self.name)}:{str(self.age)}"
         
 print("\n---- animal tests ----")
 a = Animal(4)
@@ -36,7 +36,7 @@ class Cat(Animal):
     def speak(self):
         print("meow")
     def __str__(self):
-        return "cat:"+str(self.name)+":"+str(self.age)
+        return f"cat:{str(self.name)}:{str(self.age)}"
     
 print("\n---- cat tests ----")
 c = Cat(5)
@@ -66,7 +66,7 @@ class Person(Animal):
         diff = self.age - other.age
         print(abs(diff), "year difference")
     def __str__(self):
-        return "person:"+str(self.name)+":"+str(self.age)
+        return f"person:{str(self.name)}:{str(self.age)}"
 
 print("\n---- person tests ----")
 p1 = Person("jack", 30)
@@ -88,7 +88,7 @@ class Student(Person):
         Person.__init__(self, name, age)
         self.major = major
     def __str__(self):
-        return "student:"+str(self.name)+":"+str(self.age)+":"+str(self.major)
+        return f"student:{str(self.name)}:{str(self.age)}:{str(self.major)}"
     def change_major(self, major):
         self.major = major
     def speak(self):
@@ -141,12 +141,12 @@ class Rabbit(Animal):
         # don't care about the order of the parents
         # the backslash tells python I want to break up my line
         parents_same = self.parent1.rid == other.parent1.rid \
-                       and self.parent2.rid == other.parent2.rid
+                           and self.parent2.rid == other.parent2.rid
         parents_opposite = self.parent2.rid == other.parent1.rid \
-                           and self.parent1.rid == other.parent2.rid
+                               and self.parent1.rid == other.parent2.rid
         return parents_same or parents_opposite
     def __str__(self):
-        return "rabbit:"+ self.get_rid()
+        return f"rabbit:{self.get_rid()}"
 
 print("\n---- rabbit tests ----")
 print("---- testing creating rabbits ----")

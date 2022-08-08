@@ -9,7 +9,7 @@ class Coordinate(object):
         self.y = y
     def __str__(self):
         """ Returns a string representation of self """
-        return "<" + str(self.x) + "," + str(self.y) + ">"
+        return f"<{str(self.x)},{str(self.y)}>"
     def distance(self, other):
         """ Returns the euclidean distance between two points """
         x_diff_sq = (self.x-other.x)**2
@@ -42,7 +42,7 @@ class Fraction(object):
         self.denom = denom
     def __str__(self):
         """ Retunrs a string representation of self """
-        return str(self.num) + "/" + str(self.denom)
+        return f"{str(self.num)}/{str(self.denom)}"
     def __add__(self, other):
         """ Returns a new fraction representing the addition """
         top = self.num*other.denom + self.denom*other.num
@@ -86,7 +86,7 @@ class intSet(object):
 
     def insert(self, e):
         """ Assumes e is an integer and inserts e into self """
-        if not e in self.vals:
+        if e not in self.vals:
             self.vals.append(e)
 
     def member(self, e):
@@ -100,7 +100,7 @@ class intSet(object):
         try:
             self.vals.remove(e)
         except:
-            raise ValueError(str(e) + ' not found')
+            raise ValueError(f'{str(e)} not found')
 
     def __str__(self):
         """ Returns a string representation of self """

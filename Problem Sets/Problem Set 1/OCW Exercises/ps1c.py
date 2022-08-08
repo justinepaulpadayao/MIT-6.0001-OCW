@@ -22,7 +22,7 @@ while current_savings <= portion_down_payment:
         savings_return = current_savings*r/12
         current_savings = current_savings + savings_return + portion_saved*monthly_salary
         portion_saved = (low + high)/2
-        month = month + 1
+        month += 1
 
 print('Number of months: ', month)
 

@@ -109,8 +109,7 @@ print(val)
 ## EXAMPLE: shows accessing variables outside scope
 #########################
 def f(y):
-    x = 1
-    x += 1
+    x = 1 + 1
     print(x)
 x = 5
 f(x)

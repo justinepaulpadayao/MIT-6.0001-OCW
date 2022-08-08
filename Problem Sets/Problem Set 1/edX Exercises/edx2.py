@@ -29,7 +29,7 @@ balance = 5000
 monthlyPaymentRate = 0.02
 annualInterestRate = 0.18
 
-for i in range(12):
+for _ in range(12):
     balance = (balance - monthlyPaymentRate*balance) + (balance - (monthlyPaymentRate*balance))*annualInterestRate/12
 print(round(balance,2))
 
@@ -67,7 +67,7 @@ annualInterestRate = 0.18
 
 while balance > 0:
     minimum_payment += 10
-    for i in range(12):
+    for _ in range(12):
         balance = (balance - minimum_payment) + (balance - (minimum_payment))*annualInterestRate/12
     if balance > 0:
         balance = 5000
@@ -114,7 +114,7 @@ epsilon = 0.05
 while abs(balance) > epsilon:
     minimum_payment = (lower_bound + higher_bound)/2
     balance = orig_balance
-    for i in range(12):
+    for _ in range(12):
         balance = (balance - minimum_payment) + (balance - (minimum_payment))*annualInterestRate/12
     if balance > epsilon:
         lower_bound = minimum_payment

@@ -80,11 +80,7 @@ def primes_list(n):
     primes = [2]
     # go through each of 3...n
     for j in range(3,n+1):
-        is_div = False
-        # go through each elem of primes list
-        for p in primes:
-            if j%p == 0:
-                is_div = True
+        is_div = any(j%p == 0 for p in primes)
         if not is_div:
             primes.append(j)
     return primes
@@ -150,10 +146,7 @@ print(get_ratios([1, 4], [2, 4]))
 ## EXAMPLE: Exceptions and lists
 #######################################
 def get_stats(class_list):
-	new_stats = []
-	for person in class_list:
-		new_stats.append([person[0], person[1], avg(person[1])])
-	return new_stats 
+    return [[person[0], person[1], avg(person[1])] for person in class_list] 
 
 # avg function: version without an exception
 #def avg(grades):
